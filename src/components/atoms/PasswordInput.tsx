@@ -6,7 +6,6 @@ import {
   InputGroup,
   InputProps,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { FieldError } from "react-hook-form";
 
 type PasswordType = {

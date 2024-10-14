@@ -1,30 +1,46 @@
-import { Button, FormControl, FormLabel, Input, InputGroup, Text, VStack } from "@chakra-ui/react";
+import { Alert, AlertDescription, AlertIcon, Button, FormControl, FormLabel, Input, InputGroup, VStack } from "@chakra-ui/react";
 import { Controller, useForm } from "react-hook-form";
 import PasswordInput from "../atoms/PasswordInput";
 import { z } from "zod";
 
 const loginSchema = z.object({
-  login: z.string().min(1, { message: "Login Required" }),
-  password: z.string().min(6),
+  username: z.string().email(),
+  password: z.string().min(4),
 });
 
 export type LoginFormData = z.infer<typeof loginSchema>;
 
-function LoginForm() {
+export type LoginFormProps = {
+  onSubmit: any;
+  isLoading?: boolean,
+  isError?: boolean;
+};
+
+function LoginForm({
+  onSubmit,
+  isLoading,
+  isError,
+}: LoginFormProps) {
 
   const { control, handleSubmit } = useForm<LoginFormData>({
-    defaultValues: { login: "", password: "" },
+    defaultValues: { username: "", password: "" },
   });
   
   return (
-    <form onSubmit={handleSubmit(() => {})}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <VStack spacing={4} align="start">
+      {isError && (
+          <Alert status="error">
+            <AlertIcon />
+            <AlertDescription>Email ou mot de passe invalide</AlertDescription>
+          </Alert>
+        )}
         <Controller
           render={({ field: { ...props }, fieldState: { error } }) => {
             return (
               <FormControl isInvalid={!!error}>
                 <FormLabel>
-                  Login
+                  Email
                 </FormLabel>
                 <InputGroup>
                   <Input bgColor="white" type="text" isRequired {...props} />
@@ -32,7 +48,7 @@ function LoginForm() {
               </FormControl>
             );
           }}
-          name="login"
+          name="username"
           control={control}
         />
 
@@ -53,7 +69,7 @@ function LoginForm() {
           control={control}
         />
       </VStack>
-      <Button mt={6} w="100%" type="submit"  colorScheme="teal" variant="outline" >
+      <Button mt={6} w="100%" type="submit"  colorScheme="teal" variant="outline" isLoading={isLoading} >
         Sign In
       </Button>
     </form>

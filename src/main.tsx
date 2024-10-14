@@ -5,10 +5,14 @@ import LoginTemplate from './components/templates/loginTemplate.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage.tsx';
 import RegisterPage from './components/pages/RegisterPage.tsx';
+import { AuthContextProvider } from './contexts/AuthContext.tsx';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Homepage from './components/pages/Homepage.tsx';
+
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    // front login
     path: "",
     element: <LoginTemplate />,
     children: [
@@ -21,14 +25,21 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
     ],
+  },
+  {
+    path: "home",
+    element: <Homepage />
   }
 ]);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ChakraProvider resetCSS>
-      <RouterProvider router={router} />
-    </ChakraProvider>
-    
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <ChakraProvider resetCSS>
+          <RouterProvider router={router} />
+        </ChakraProvider>
+      </AuthContextProvider>
+    </QueryClientProvider>
   </StrictMode>,
 )

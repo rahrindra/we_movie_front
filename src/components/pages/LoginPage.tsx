@@ -1,9 +1,20 @@
 import { Box, Center, Heading } from "@chakra-ui/react";
-import { Outlet } from "react-router-dom";
 import ConnectedLoginForm from "../organisms/ConnectedLoginForm";
-
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../../contexts/AuthContext";
+import { useLocation, useNavigate } from "react-router-dom";
+ 
 function LoginPage() {
-  
+  const { hasToken } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from: string = location.state?.from?.pathname || "/home";
+
+  useEffect(() => {
+    if (hasToken) {
+      navigate(from, { replace: true });
+    }
+  })
 
   return (
     <Box
