@@ -1,8 +1,6 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { ChakraProvider } from "@chakra-ui/react";
-import App from './App.tsx'
-import './index.css'
 import LoginTemplate from './components/templates/loginTemplate.tsx';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import LoginPage from './components/pages/LoginPage.tsx';
@@ -28,7 +26,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <ChakraProvider>
+    <ChakraProvider resetCSS>
       <RouterProvider router={router} />
     </ChakraProvider>
     
