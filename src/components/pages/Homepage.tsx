@@ -29,7 +29,7 @@ function Homepage() {
 
         <Spacer />
 
-        <Box bg="gray.400" w="65%">
+        <Box w="65%">
           <MovieList />
         </Box>
       </Flex>

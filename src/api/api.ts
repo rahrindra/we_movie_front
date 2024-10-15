@@ -17,3 +17,9 @@ export const getGenreList = async () => {
 };
 
 
+export const getMovieList = async () => {
+  const { data } = await axios.get<any>('movie/list');
+
+  return data;
+};
+
