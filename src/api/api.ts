@@ -10,4 +10,10 @@ export const login = async (payload: LoginPayload) => {
   return data;
 };
 
+export const getGenreList = async () => {
+  const { data } = await axios.get<any>('genre/list');
+
+  return data;
+};
+
 
