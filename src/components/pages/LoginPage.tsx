@@ -8,7 +8,7 @@ function LoginPage() {
   const { hasToken } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const from: string = location.state?.from?.pathname || "/home";
+  const from: string = location.state?.from?.pathname || "/";
 
   useEffect(() => {
     if (hasToken) {

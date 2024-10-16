@@ -33,7 +33,7 @@ function forbiddenErrorInterceptor(error: AxiosResponse<AxiosError>) {
     ) {
       // pour le front office
       clearStoredAuthToken();
-      window.location.assign("/login");
+      window.location.assign("/we-movie/login");
     }
   } else {
     return Promise.reject(error);

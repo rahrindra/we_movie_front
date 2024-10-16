@@ -13,7 +13,7 @@ const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
-    path: "",
+    path: "we-movie",
     element: <LoginTemplate />,
     children: [
       {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path: "home",
+    path: "",
     element: <Homepage />
   }
 ]);

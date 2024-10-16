@@ -1,5 +1,6 @@
 import { Box, Button, Flex, Heading, Image, Spacer, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
+import MovieDetailModal from "../atoms/MovieDetailModal";
 
 function MovieItem({movie}: any) {
 
@@ -10,7 +11,7 @@ function MovieItem({movie}: any) {
             <Image 
                 boxSize='150px' 
                 src= {`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-                alt='Dan Abramov'>
+                alt={movie?.title}>
             </Image>
             <Box ml={5}>
                 <Text>
@@ -26,9 +27,7 @@ function MovieItem({movie}: any) {
                 </Text>
                 <Flex mt={3}>
                     <Spacer />
-                    <Button colorScheme="teal">
-                        Lire la suite
-                    </Button>
+                    <MovieDetailModal id={movie.id} />
                 </Flex>
                 
             </Box>

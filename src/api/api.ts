@@ -23,3 +23,9 @@ export const getMovieList = async () => {
   return data;
 };
 
+export const getMovieDetails = async (id: number) => {
+  const { data } = await axios.get<any>(`movie/details/${id}`);
+
+  return data;
+};
+
