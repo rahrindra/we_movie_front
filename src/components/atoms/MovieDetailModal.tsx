@@ -1,5 +1,4 @@
-import { AspectRatio, Box, Button, Center, Divider, Heading, Image, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
-import MovieItem from "../molecules/MovieItem";
+import { Button, Divider, Heading, Image, Modal, ModalBody, ModalContent, ModalFooter, ModalOverlay, Text, useDisclosure } from "@chakra-ui/react";
 import { useQuery } from "@tanstack/react-query";
 import { getMovieDetails } from "../../api/api";
 
@@ -36,7 +35,7 @@ function MovieDetailModal({id}: MovieDetailModalProps) {
                         alt={movie?.title}>
                     </Image>
                     <Heading>
-                        {movie.title}
+                        {movie?.title}
                     </Heading>
                     <Text fontSize="xs">
                         <Text as="span"> note: {movie?.vote_average.toFixed(1)}/10</Text>
