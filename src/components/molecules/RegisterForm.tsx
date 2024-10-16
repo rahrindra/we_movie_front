@@ -4,27 +4,27 @@ import PasswordInput from "../atoms/PasswordInput";
 import { z } from "zod";
 import { Link as RouterLink } from "react-router-dom";
 
-const loginSchema = z.object({
-  username: z.string().email(),
+const registerSchema = z.object({
+  email: z.string().email(),
   password: z.string().min(4),
 });
 
-export type LoginFormData = z.infer<typeof loginSchema>;
+export type RegisterFormData = z.infer<typeof registerSchema>;
 
-export type LoginFormProps = {
+export type RegisterFormProps = {
   onSubmit: any;
   isLoading?: boolean,
   isError?: boolean;
 };
 
-function LoginForm({
+function RegisterForm({
   onSubmit,
   isLoading,
   isError,
-}: LoginFormProps) {
+}: RegisterFormProps) {
 
-  const { control, handleSubmit } = useForm<LoginFormData>({
-    defaultValues: { username: "", password: "" },
+  const { control, handleSubmit } = useForm<RegisterFormData>({
+    defaultValues: { email: "", password: "" },
   });
   
   return (
@@ -49,7 +49,7 @@ function LoginForm({
               </FormControl>
             );
           }}
-          name="username"
+          name="email"
           control={control}
         />
 
@@ -71,19 +71,19 @@ function LoginForm({
         />
       </VStack>
       <Button my={6} w="100%" type="submit"  colorScheme="teal" variant="outline" isLoading={isLoading} >
-        Sign In
+        Register
       </Button>
       <Button
         as={RouterLink}
-        to="/we-movie/register"
+        to="/we-movie/login"
         variant="outline"
         w="100%"
         colorScheme="pink"
       >
-        Register
+        Login
       </Button>
     </form>
   );
 }
 
-export default LoginForm;
+export default RegisterForm;

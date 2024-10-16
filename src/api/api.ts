@@ -1,6 +1,14 @@
 import axios from "./client";
-import { LoginPayload, LoginResponse } from "./types";
+import { LoginPayload, LoginResponse, RegisterPayload } from "./types";
 
+
+export const register = async (payload: RegisterPayload) => {
+  const { data } = await axios.post<any>(
+    "user/register",
+    payload
+  );
+  return data;
+};
 
 export const login = async (payload: LoginPayload) => {
   const { data } = await axios.post<LoginResponse>(
