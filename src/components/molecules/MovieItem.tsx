@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Heading, Image, Spacer, Text } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Spacer, Text } from "@chakra-ui/react";
 import { format } from "date-fns";
 import MovieDetailModal from "../atoms/MovieDetailModal";
 
