@@ -29,3 +29,5 @@ Vite use [Rollup](https://rollupjs.org/guide/en/) under the hood to build for pr
 ```
 docker run -p 3000:80 rahrindra/we-movie-front:test
 ```
+
+puis le front sur http://127.0.0.1:3000/
