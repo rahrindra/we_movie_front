@@ -13,14 +13,17 @@ RUN npm install
 # Copier tous les fichiers du projet dans le répertoire de travail
 COPY . .
 
-# Construire le projet React
+# Construire le projet Vite (cela va générer un dossier 'dist')
 RUN npm run build
 
 # Étape 2 : Utiliser une image Nginx pour servir le contenu statique
 FROM nginx:alpine
 
-# Copier les fichiers de construction (le dossier 'build') dans le répertoire Nginx
-COPY --from=build /app/build /usr/share/nginx/html
+# Copier les fichiers de construction (le dossier 'dist') dans le répertoire Nginx
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Copier la configuration Nginx personnalisée
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Exposer le port 80
 EXPOSE 80
